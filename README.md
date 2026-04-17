@@ -6,7 +6,7 @@ As a cybersecurity advocate focused on digital privacy, I designed this system t
 
 ## 🛡️ Infrastructure & Security Posture
 This pipeline does not run on a standard desktop. It is deployed and hosted on a **custom-hardened Virtual Machine** running on a bare-metal hypervisor. The environment is heavily restricted to ensure the integrity of the LLM and the scraped data.
-* 🔗 **Note:** You can view the complete writeup and architecture of my secure VM and firewall configurations in my [Hardened VM & Network Infrastructure Repo](INSERT_LINK_TO_YOUR_OTHER_REPO_HERE).
+* 🔗 **Note:** You can view the complete writeup and architecture of my secure VM and firewall configurations in my [Hardened VM & Network Infrastructure Repo](https://github.com/vasilisgiann21/private-llm-infrastructure).
 
 ## 🧠 Development Process & Pipeline Optimization
 Building a reliable data ingestion pipeline for web scraping is notoriously difficult due to edge cases. 
