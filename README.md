@@ -5,15 +5,26 @@ A custom Retrieval-Augmented Generation (RAG) architecture built to automate the
 As a cybersecurity advocate focused on digital privacy, I designed this system to run entirely locally. By scraping threat intelligence data and feeding it into a local Large Language Model (LLM), I can query the latest security trends without leaking search data to third-party AI providers.
 
 ## 🛡️ Infrastructure & Security Posture
-This pipeline does not run on a standard desktop. It is deployed and hosted on a **custom-hardened Virtual Machine** running on a bare-metal hypervisor. 
-* 🔗 **Note:** You can view the complete writeup and architecture of my secure VM and network segmentation in my [Hardened VM & Network Infrastructure Repo](INSERT_LINK_TO_YOUR_OTHER_REPO_HERE).
+This pipeline does not run on a standard desktop. It is deployed and hosted on a **custom-hardened Virtual Machine** running on a bare-metal hypervisor. The environment is heavily restricted to ensure the integrity of the LLM and the scraped data.
+* 🔗 **Note:** You can view the complete writeup and architecture of my secure VM and firewall configurations in my [Hardened VM & Network Infrastructure Repo](INSERT_LINK_TO_YOUR_OTHER_REPO_HERE).
 
-## 🛠️ Technical Architecture (Initial Build)
-This repository contains the foundational data ingestion pipeline built from scratch:
-* **Custom Scrapers:** Python scripts designed to parse Hacker News threads, extracting relevant discussions around CVEs, exploits, and tech news.
-* **Data Splitters:** Custom chunking logic to break down large forum discussions into manageable token limits.
-* **Embedding Engine:** Vectorizing the scraped text for semantic search capabilities.
-* **Local LLM Integration:** Feeding the embedded context into a locally hosted model to generate accurate, context-aware answers regarding new vulnerabilities.
+## 🧠 Development Process & Pipeline Optimization
+Building a reliable data ingestion pipeline for web scraping is notoriously difficult due to edge cases. 
 
-## 🚀 Purpose
-The primary goal of this project is to create an isolated, private intelligence feed. Instead of manually parsing hundreds of HN threads for the latest penetration testing tools or security flaws, this RAG architecture allows me to ask direct questions (e.g., *"What are the details of the latest SSH vulnerability discussed today?"*) and get precise answers grounded in real-time data.
+I initially built the data ingestion pipeline (scrapers, splitters, embedders) entirely from scratch. However, I quickly ran into edge cases with dynamic HTML parsing on Hacker News and chunk overlaps that corrupted the vector embeddings. 
+
+Rather than spending weeks reinventing the wheel and fighting regex errors, **I leveraged LLM code assistants to aggressively refactor my initial logic**, optimize the error handling, and stabilize the ingestion flow. 
+
+This strategic use of AI allowed me to focus my engineering time on the actual core challenges:
+1. **Configuring and securing the host VM.**
+2. **Deploying and optimizing the local LLM.**
+3. **Tuning the RAG retrieval mechanism to accurately fetch cybersecurity intelligence.**
+
+## 🛠️ Current Tech Stack
+* **Ingestion:** Python, `aiohttp`, `BeautifulSoup` (AI-optimized for edge cases)
+* **Processing:** Semantic chunking and vector embeddings
+* **Deployment:** Hardened Local VM (Proxmox/Linux)
+* **Application:** Threat Intelligence querying and vulnerability tracking
+
+## 🚀 Usage
+This tool serves as my personal intelligence feed. By querying the local LLM, I can instantly extract technical details about new CVEs or penetration testing techniques discussed by the community, fully isolating my research from public internet trackers.
